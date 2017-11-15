@@ -12,4 +12,6 @@ otherwise know about.
 
 (Trying) to use the myanimelist api, the MangaEden api, anime news network api. 
 
+UPDATE: It looks like anime news network will work the best, however we will
+need to parse its xml taken from api requests via beautiful soup. 
 
