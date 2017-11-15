@@ -8,4 +8,8 @@ whether it be author, title, or series title, and they can find all media
 relating to that. Helps fans discover other works in series that they might now
 otherwise know about. 
 
+---
+
+(Trying) to use the myanimelist api, the MangaEden api, anime news network api. 
+
 
