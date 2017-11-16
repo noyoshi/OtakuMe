@@ -19,4 +19,5 @@ TODO:
 APIs
 ---
 https://mcd.iosphe.re/
+
 https://www.animenewsnetwork.com/encyclopedia/api.php

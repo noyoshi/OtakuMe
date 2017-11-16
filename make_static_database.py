@@ -47,7 +47,7 @@ def get_titles():
 
 def make_database(titles, d):
     # For details see https://docs.python.org/2/library/sqlite3.html
-    conn = sqlite3.connect('static/title_database.db')
+    conn = sqlite3.connect('data/title_database.db')
     conn.text_factory = str
     c = conn.cursor()
     c.execute('''CREATE TABLE anime
