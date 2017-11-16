@@ -1,0 +1,10 @@
+/* Main.css */
+
+body{
+  background-color: #f9fcff;
+}
+.noto{
+  font-family: 'Noto Sans', sans-serif;
+  color: #0a3560;
+  font-size: 50px;
+}
