@@ -8,4 +8,4 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 
 def index(request):
-    return render(request, 'project/header.html')
+    return render(request, 'project/home.html')

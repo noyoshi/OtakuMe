@@ -8,5 +8,12 @@
 .noto{
   font-family: 'Noto Sans', sans-serif;
   color: #0a3560;
-  font-size: 50px;
+}
+.container{
+  width: 1170px;
+}
+
+.img-thumbnail{
+  width: 200px;
+
 }
