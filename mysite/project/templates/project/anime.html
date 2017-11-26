@@ -3,17 +3,25 @@
 {% block content %}
 
 
-<div class="well">
-  <div class="header">
-      {% for description in descriptions %}
-    <img src="{{ description.image }}" alt="exmaple" class="img-thumbnail">
-        {{ description.title }}
-    <br>
-    <div>
-        {{ description.summary }}
+    {% for description in descriptions %}
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2 class="panel-title" style="font-size: 25px;">
+                <b>{{ description.title }}</b>
+            </h2>
+        </div>
+        <br>
+        <div class="panel-body">
+            <img src="{{ description.image }}" alt="exmaple" class="img-responsize" id="Panel_Image">
+            <p></p>
+            <p>
+            <a href="https://www.crunchyroll.com/{{ description.crunchy }}" target="_blank">Crunchyroll</a>
+        </p>
+        <p>
+            {{ description.summary }}
+            </p>
+        </div>
     </div>
     {% endfor %}
-  </div>
-</div>
 
 {% endblock %}
