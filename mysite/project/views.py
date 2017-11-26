@@ -16,8 +16,8 @@ def anime(request):
     search = request.GET.get('search')
     if search==None:
         print "BAD SEARCH AGAIN"
-        return render_to_response('project/anime.html', {'description': description})
+        return render_to_response('project/anime.html', {'descriptions': descriptions})
     print search
-    description = get_anime_info(search)
+    descriptions = get_anime_info(search)
     print "derp"
-    return render_to_response('project/anime.html', {'description': description})
+    return render_to_response('project/anime.html', {'descriptions': descriptions})

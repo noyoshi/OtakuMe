@@ -5,12 +5,15 @@
 
 <div class="well">
   <div class="header">
+      {% for description in descriptions %}
     <img src="{{ description.image }}" alt="exmaple" class="img-thumbnail">
-             {{ description.title }}
+        {{ description.title }}
     <br>
     <div>
         {{ description.summary }}
     </div>
+    {% endfor %}
   </div>
 </div>
+
 {% endblock %}

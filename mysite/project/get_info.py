@@ -32,54 +32,66 @@ def get_anime_info(name):
     name1 = name1.lower().strip()
     conn = sqlite3.connect('project/title_database.db')
     conn.text_factory = str
-
+    descriptions = []
     c = conn.cursor()
-    t = (name1, )
-    c.execute('SELECT id FROM anime WHERE title=?', t)
-    _id = str(c.fetchone()[0])
-    url="https://www.animenewsnetwork.com/encyclopedia/api.xml?anime=" + _id
+    ids = []
+    # t = (name1, )
+    # c.execute('SELECT id FROM anime WHERE title=?', t)
+    # _id = str(c.fetchone()[0])
+    for row in c.execute('SELECT * FROM anime'):
+        x = str(row[0])
+        if name in x:
+            ids.append(str(row[1]))
+    for _id in ids:
+        bad = False
+        url="https://www.animenewsnetwork.com/encyclopedia/api.xml?anime=" + _id
 
-# TODO: MAKE IT POSSIBLE TO RETURN MULTIPLE THINGS PER search
-# search:your -> your lie in april, your xx yy zz, etc
-    client = urllib.urlopen(url)
-    html = client.read()
-    client.close()
+    # TODO: MAKE IT POSSIBLE TO RETURN MULTIPLE THINGS PER search
+    # search:your -> your lie in april, your xx yy zz, etc
+        client = urllib.urlopen(url)
+        html = client.read()
+        client.close()
 
-    page_soup = soup(html, 'xml')
+        page_soup = soup(html, 'xml')
 
-    genres = []
-    themes = []
-    songs = [[],[]] # op, ed
-    run_dates = [] # Start, end
-    plot_summary = ""
-    pic = ""
-    title = ""
-    # for item in x:
-    #     print item.text
-    for item in page_soup.findAll(type="Ending Theme"):
-        songs[1].append(item.text.encode('utf-8'))
-    for item in page_soup.findAll(type="Opening Theme"):
-        songs[0].append(item.text.encode('utf-8'))
-    for item in page_soup.findAll(type="Plot Summary"):
-        plot_summary = item.text.encode('utf-8')
-    for item in page_soup.findAll(type="Genres"):
-        genres.append(item.text.encode('utf-8'))
-    for item in page_soup.findAll(type="Themes"):
-        themes.append(item.text.encode('utf-8'))
-    for item in page_soup.findAll(type="Vintage"):
-        run_dates.append(item.text.encode('utf-8'))
-    for item in page_soup.findAll(type="Picture"):
-        pic= item.find('img')['src']
-    for item in page_soup.findAll(type="Main title"):
-        title = item.text.encode('utf-8')
-    # print pic
-    # print genres
-    # print themes
-    # print songs
-    # print plot_summary
-    # print run_dates
-    return {'image': pic, 'title':title, 'genres': genres, 'themes': themes, 'songs': songs, 'summary': plot_summary}
-#    for item in page_soup.findAll("item"):
+        genres = []
+        themes = []
+        songs = [[],[]] # op, ed
+        run_dates = [] # Start, end
+        plot_summary = ""
+        pic = ""
+        title = ""
+        # for item in x:
+        #     print item.text
+        for item in page_soup.findAll(type="Ending Theme"):
+            songs[1].append(item.text.encode('utf-8'))
+        for item in page_soup.findAll(type="Opening Theme"):
+            songs[0].append(item.text.encode('utf-8'))
+        for item in page_soup.findAll(type="Plot Summary"):
+            plot_summary = item.text.encode('utf-8')
+        for item in page_soup.findAll(type="Genres"):
+            genres.append(item.text.encode('utf-8'))
+        for item in page_soup.findAll(type="Themes"):
+            themes.append(item.text.encode('utf-8'))
+        for item in page_soup.findAll(type="Vintage"):
+            run_dates.append(item.text.encode('utf-8'))
+        for item in page_soup.findAll(type="Picture"):
+            pic= item.find('img')['src']
+        for item in page_soup.findAll(type="Main title"):
+            title = item.text.encode('utf-8')
+        # print pic
+        # print genres
+        # print themes
+        # print songs
+        # print plot_summary
+        # print run_dates
+        for show in descriptions: # Removes duplicate listings
+            if show['title'] == title:
+                bad = True
+        if not bad:
+            descriptions.append({'image': pic, 'title':title, 'genres': genres, 'themes': themes, 'songs': songs, 'summary': plot_summary})
+    return descriptions
+#for item in page_soup.findAll("item"):
 
  #       print item.find("Genres")
 
