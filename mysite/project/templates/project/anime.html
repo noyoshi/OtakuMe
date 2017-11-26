@@ -1,0 +1,16 @@
+{% extends "project/home.html" %}
+
+{% block content %}
+
+
+<div class="well">
+  <div class="header">
+    <img src="{{ description.image }}" alt="exmaple" class="img-thumbnail">
+             {{ description.title }}
+    <br>
+    <div>
+        {{ description.summary }}
+    </div>
+  </div>
+</div>
+{% endblock %}

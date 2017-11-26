@@ -1,10 +1,7 @@
 
 #!/usr/bin/env python2.7
 
-'''
-Using the api from animenewsnetwork.com:
-    https://www.animenewsnetwork.com/encyclopedia/api.php
-'''
+
 
 import urllib
 from bs4 import BeautifulSoup as soup
@@ -47,24 +44,27 @@ def get_titles():
 
 def make_database(titles, d):
     # For details see https://docs.python.org/2/library/sqlite3.html
-    conn = sqlite3.connect('data/title_database.db')
+    conn = sqlite3.connect('mysite/project/title_database.db')
+    # conn = sqlite3.connect('data/title_database.db')
+
     conn.text_factory = str
     c = conn.cursor()
     c.execute('''CREATE TABLE anime
         (title text, id mediumint, gid INT)''')
 
-    anime = []
+    z = []
 
     for title in titles:
         # Tuples, since that is what SQLite3 uses
-        anime.append((title, d[title][0], d[title][1]))
+        z.append((title, d[title][0], d[title][1]))
 
     #print anime
-    c.executemany('INSERT INTO anime VALUES (?,?,?)', anime)
-
+    c.executemany('INSERT INTO anime VALUES (?,?,?)', z)
     # Making sure that that database was made correctly
     for row in c.execute('SELECT * FROM anime'):
         print row
+    conn.commit()
+    conn.close()
 
 
 if __name__ == '__main__':
