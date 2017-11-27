@@ -11,10 +11,12 @@ otherwise know about.
 ---
 
 TODO:
-- [ ] Add in search feature for database
-- [ ] Add in feature that collects more info on anime
-- [ ] Add front end UI
-
+- [x] Add in search feature for database
+- [x] Add in feature that collects more info on anime
+- [x] Add front end UI
+- [ ] Make UI better 
+- [ ] Make searches better 
+- [ ] Add in manga  
 
 APIs
 ---
