@@ -1,6 +1,4 @@
-
 #!/usr/bin/env python2.7
-
 
 
 import urllib
@@ -20,9 +18,10 @@ def parse_name(name):
     name = remove_accents(name)
     return name.encode('utf-8').lower()
 
-def get_titles():
+def get_titles(_type):
     # This gets info on all anime in the list, around 82k titles?
-    url = "https://www.animenewsnetwork.com/encyclopedia/reports.xml?id=155&type=anime&nlist=all"
+    # url = "https://www.animenewsnetwork.com/encyclopedia/reports.xml?id=155&type=anime&nlist=all"
+    url = "https://www.animenewsnetwork.com/encyclopedia/reports.xml?id=155&type=" + _type + "&nlist=all"
 
     client = urllib.urlopen(url)
     html = client.read()
@@ -42,36 +41,63 @@ def get_titles():
 
     return titles, d
 
-def make_database(titles, d):
+def make_database(titles, d, _type):
     # For details see https://docs.python.org/2/library/sqlite3.html
-    conn = sqlite3.connect('mysite/project/title_database.db')
-    # conn = sqlite3.connect('data/title_database.db')
+    if _type == 'anime':
+        conn = sqlite3.connect('mysite/project/title_database.db')
+        # conn = sqlite3.connect('data/title_database.db')
 
-    conn.text_factory = str
-    c = conn.cursor()
-    c.execute('''CREATE TABLE anime
-        (title text, id mediumint, gid INT)''')
+        conn.text_factory = str
+        c = conn.cursor()
+        c.execute('''CREATE TABLE anime
+            (title text, id mediumint, gid INT)''')
 
-    z = []
+        z = []
 
-    for title in titles:
-        # Tuples, since that is what SQLite3 uses
-        z.append((title, d[title][0], d[title][1]))
+        for title in titles:
+            # Tuples, since that is what SQLite3 uses
+            z.append((title, d[title][0], d[title][1]))
 
-    #print anime
-    c.executemany('INSERT INTO anime VALUES (?,?,?)', z)
-    # Making sure that that database was made correctly
-    for row in c.execute('SELECT * FROM anime'):
-        print row
-    conn.commit()
-    conn.close()
+        #print anime
+        c.executemany('INSERT INTO anime VALUES (?,?,?)', z)
+        # Making sure that that database was made correctly
+        for row in c.execute('SELECT * FROM anime'):
+            print row
+        conn.commit()
+        conn.close()
+    elif _type == 'manga':
+        conn = sqlite3.connect('mysite/project/manga_database.db')
+        # conn = sqlite3.connect('data/title_database.db')
+
+        conn.text_factory = str
+        c = conn.cursor()
+        c.execute('''CREATE TABLE manga
+            (title text, id mediumint, gid INT)''')
+
+        z = []
+
+        for title in titles:
+            # Tuples, since that is what SQLite3 uses
+            z.append((title, d[title][0], d[title][1]))
+
+        #print anime
+        c.executemany('INSERT INTO manga VALUES (?,?,?)', z)
+        # Making sure that that database was made correctly
+        for row in c.execute('SELECT * FROM manga'):
+            print row
+        conn.commit()
+        conn.close()
 
 
 if __name__ == '__main__':
     # Creates the database
-    titles, d = get_titles()
+    # anime_titles, anime_d = get_anime_titles('anime')
+    manga_titles, manga_d = get_titles('manga')
 
-    for title in titles:
-        print title, d[title]
+    # for title in anime_titles:
+    #     print title, anime_d[title]
+    for title in manga_titles:
+        print title, manga_d[title]
 
-    make_database(titles, d)
+    # make_database(titles, anime_d, 'anime')
+    make_database(manga_titles, manga_d, 'manga')

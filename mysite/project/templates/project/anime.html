@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+    {% if descriptions != None %}
     {% for description in descriptions %}
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -14,14 +14,17 @@
         <div class="panel-body">
             <img src="{{ description.image }}" alt="exmaple" class="img-responsize" id="Panel_Image">
             <p></p>
+            {% if description.crunchy %}
             <p>
             <a href="https://www.crunchyroll.com/{{ description.crunchy }}" target="_blank">Crunchyroll</a>
-        </p>
+            </p>
+            {% endif %}
         <p>
             {{ description.summary }}
             </p>
         </div>
     </div>
     {% endfor %}
+    {% endif %}
 
 {% endblock %}

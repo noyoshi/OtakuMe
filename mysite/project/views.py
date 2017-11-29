@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'project/home.html')
 
 def anime(request):
-    description = {}
+    descriptions = {}
     search = request.GET.get('search')
     if search==None:
         print "BAD SEARCH AGAIN"

@@ -5,9 +5,19 @@ from bs4 import BeautifulSoup as soup
 import sqlite3
 import string
 import unicodedata
+import requests
 
+def remove_accents(data):
+    # From https://stackoverflow.com/questions/8694815/removing-accent-and-special-characters#8695067
+    line = data.split()
+    for i, word in enumerate(line):
+        line[i] = ''.join(x for x in unicodedata.normalize('NFKD', word) if x in string.ascii_letters).lower()
+    return ' '.join(line)
 
 def name_to_id(name):
+    '''
+    Currently not using...
+    '''
     name1 = name.encode('utf-8')
     print type(name1)
     conn = sqlite3.connect('project/title_database.db')
@@ -47,7 +57,7 @@ def get_anime_info(name):
 
     for row in c.execute('SELECT * FROM anime'):
         x = str(row[0])
-        if name in x or name == x:
+        if (name1 in x) or name1 == x.lower():
             ids.append(str(row[1]))
 
     # c.execute('SELECT id FROM anime WHERE id =*?', t)
@@ -90,11 +100,15 @@ def get_anime_info(name):
         for item in page_soup.findAll(type="Picture"):
             pic= item.find('img')['src']
         for item in page_soup.findAll(type="Main title"):
+            title = remove_accents(title).strip()
             title = item.text.encode('utf-8')
         crunchy = "-".join(title.split())
+        URL = "https://www.crunchyroll.com/" + crunchy
+        r = requests.get(url = URL)
+
         # print pic
         # print genres
-        # print themes
+        # print themes-
         # print songs
         # print plot_summary
         # print run_dates
@@ -102,7 +116,11 @@ def get_anime_info(name):
             if show['title'] == title:
                 bad = True
         if not bad:
-            descriptions.append({'crunchy': crunchy, 'image': pic, 'title':title, 'genres': genres, 'themes': themes, 'songs': songs, 'summary': plot_summary})
+            if r.ok:
+                descriptions.append({'crunchy': crunchy, 'image': pic, 'title':title, 'genres': genres, 'themes': themes, 'songs': songs, 'summary': plot_summary})
+            else:
+                descriptions.append({'crunchy': None, 'image': pic, 'title':title, 'genres': genres, 'themes': themes, 'songs': songs, 'summary': plot_summary})
+    print descriptions
     return descriptions
 #for item in page_soup.findAll("item"):
 
