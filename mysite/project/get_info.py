@@ -117,7 +117,8 @@ def get_anime_info(name):
         # print run_dates
         genres = ', '.join(genres)
         themes = ', '.join(themes)
-        run_dates = ' '.join(run_dates)
+        # run_dates = ' '.join(run_dates)
+        run_dates = None # Rightnow these do not look good when displayed
 
         for show in descriptions: # Removes duplicate listings
             if show['title'] == title:
@@ -170,7 +171,7 @@ def get_manga_info(name):
         title = ""
         tank = None
         pages = None
-        
+
 #TODO Add in more functionality-> website links, episode lists, run years,
 # episode names,
         for item in page_soup.findAll(type="Number of pages"):

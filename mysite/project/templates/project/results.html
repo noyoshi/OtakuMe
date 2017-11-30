@@ -97,18 +97,28 @@
                 </a>
               </li>
               {% endif %}
+              {% if description.themes != None %}
               <li>
                 Themes: {{ description.themes }}
               </li>
+              {% endif %}
+              {% if description.genres != None %}
               <li>
                 Genres: {{ description.genres }}
               </li>
+              {% endif %}
+              <!-- {% if description.rundates != None %}
               <li>
                 Runs: {{ description.rundates }}
               </li>
+              {% endif %} -->
+
+              {% if description.score != None %}
               <li>
                 Score: {{ description.score }}
               </li>
+              {% endif %}
+
             </ul>
           </p>
         </div>
