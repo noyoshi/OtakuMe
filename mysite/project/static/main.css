@@ -1,23 +1,129 @@
 /* Main.css */
 
-.body{
-  background-color: #f9fcff;
-  font-family: 'Noto Sans', sans-serif;
-}
 
-.noto{
-  font-family: 'Noto Sans', sans-serif;
-  color: #0a3560;
-}
 .container{
   width: 1170px;
 }
 
-.img-thumbnail{
-  width: 200px;
+.thumb{
+  width: 130px;
+  float: left;
+  margin-right: 12px;
 }
 
-.a {
-    color:inherit;
-    text-decoration: none;
+.page-header{
+  margin-top: 10px;
+}
+/* Main.css */
+
+/* Colors:
+Olive Green: #92987E
+Burnt Red: #CC575D
+Blue Grey: #78909C
+Teal: #68B2AD
+Gold/Beige: #E0CFAF
+Sky Blue: #03A9F4
+Background, steel grey: #383C4A
+GREY!: #D3DAE3
+Light green: #DFF0D8
+NewGold: #FCF8E3
+Offwhite: #fcfcf7
+*/
+
+/* COLOR DEFINITIONS */
+/* ==========================BACKGROUND========================*/
+.steel-grey-bg{
+  background-color: #383C4A;
+}
+.burnt-red-bg{
+  background-color: #CC575D;
+}
+
+.olive-green-bg{
+  background-color: #92987E;
+}
+
+.blue-grey-bg{
+  background-color: #78909C;
+}
+
+.teal-bg{
+  background-color: #68B2AD;
+}
+
+.gold-bg{
+  background-color: #FCF8E3;
+}
+
+.offwhite-bg{
+  background-color: #fcfcf7;
+}
+
+.light-green-bg{
+  background-color: #DFF0D8;
+}
+
+/* ==========================TEXT COLORS========================*/
+.steel-grey-text{
+  color: #383C4A;
+}
+
+.burnt-red-text{
+  color: #C76A70;
+}
+
+.olive-green-text{
+  color: #92987E;
+}
+
+.blue-grey-text{
+  color: #78909C;
+}
+
+.teal-text{
+  color: #68B2AD;
+}
+
+.gold-text{
+  color: #E0CFAF;
+}
+
+.offwhite-text{
+  color: #D3DAE3;
+}
+
+.light-green-text{
+  color: #DFF0D8;
+}
+/* +++++++++++++++++++++++ FONTS +++++++++++++++++++++++ */
+
+.lato{
+  font-family: 'Lato', sans-serif;
+}
+ .raleway{
+   font-family: 'Raleway', sans-serif;
+ }
+
+ /* +++++++++++++++++++++++ MAIN +++++++++++++++++++++++ */
+
+
+.panel{
+  background-color: #fcfcf7;
+}
+
+.fixed{
+  position: fixed;
+  text-align: center;
+}
+.subsection-1{
+  width: 900px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.list{
+  float:left;
 }

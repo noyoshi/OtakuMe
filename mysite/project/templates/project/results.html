@@ -1,0 +1,120 @@
+{% extends "project/home.html" %}
+
+{% block content %}
+
+    {% if manga_descriptions != None %}
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-header" style="text-align: center;">
+          <h1 class="raleway gold-text" style="font-size:35px;">
+            MANGA
+          </h1>
+          <br>
+        </div>
+        <br>
+      </div>
+      <br>
+    {% for description in manga_descriptions %}
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h2 class="panel-title" style="font-size: 25px;">
+                <b><i class="fa fa-book"></i> {{ description.title }}</b>
+            </h2>
+        </div>
+        <br>
+        <div class="panel-body">
+          <p>
+            <img src="{{ description.image }}"  class="img-responsize thumb" id="Panel_Image">
+            {{ description.summary }}
+            <ul class="list">
+              {% if description.themes != None %}
+              <li>
+                Themes: {{ description.themes }}
+              </li>
+              {% endif %}
+
+              {% if description.genres != None %}
+              <li>
+                Genres: {{ description.genres }}
+              </li>
+              {% endif %}
+
+              {% if description.pages != None %}
+              <li>
+                Pages: {{ description.pages }}
+              </li>
+              {% endif %}
+
+              {% if description.tankou != None %}
+              <li>
+                Number of other books in series: {{ description.tankou }}
+              </li>
+              {% endif %}
+
+              {% if description.score != None %}
+              <li>
+                Score: {{ description.score }}
+              </li>
+              {% endif %}
+            </ul>
+            </p>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+    {% if anime_descriptions != None %}
+    <br>
+    <!-- <div class="row"> -->
+      <div class="col-md-12">
+        <div class="page-header" style="text-align: center;">
+          <h1 class="raleway light-green-text" style="font-size:35px;">
+            ANIME
+          </h1>
+          <br>
+        </div>
+        <br>
+      </div>
+    {% for description in anime_descriptions %}
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h2 class="panel-title" style="font-size: 25px;">
+                <b><i class="fa fa-tv"></i> {{ description.title }}</b>
+            </h2>
+        </div>
+        <br>
+        <div class="panel-body">
+            <p>
+            <img src="{{ description.image }}" id="Panel_Image" class="image-responsive thumb">
+            {{ description.summary }}
+          <!-- </p> -->
+            <ul class="list">
+              {% if description.crunchy %}
+              <li>
+                <a href="https://www.crunchyroll.com/{{ description.crunchy }}" target="_blank">
+                  <i class="fa fa-play"></i>
+                </a>
+              </li>
+              {% endif %}
+              <li>
+                Themes: {{ description.themes }}
+              </li>
+              <li>
+                Genres: {{ description.genres }}
+              </li>
+              <li>
+                Runs: {{ description.rundates }}
+              </li>
+              <li>
+                Score: {{ description.score }}
+              </li>
+            </ul>
+          </p>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+    {% endif %}
+
+{% endblock %}
