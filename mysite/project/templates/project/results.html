@@ -22,7 +22,6 @@
                 <b><i class="fa fa-book"></i> {{ description.title }}</b>
             </h2>
         </div>
-        <br>
         <div class="panel-body">
           <p>
             <img src="{{ description.image }}"  class="img-responsize thumb" id="Panel_Image">
@@ -54,7 +53,7 @@
 
               {% if description.score != None %}
               <li>
-                Score: {{ description.score }}
+                Score: {{ description.score }}/10
               </li>
               {% endif %}
             </ul>
@@ -83,7 +82,6 @@
                 <b><i class="fa fa-tv"></i> {{ description.title }}</b>
             </h2>
         </div>
-        <br>
         <div class="panel-body">
             <p>
             <img src="{{ description.image }}" id="Panel_Image" class="image-responsive thumb">
@@ -115,7 +113,7 @@
 
               {% if description.score != None %}
               <li>
-                Score: {{ description.score }}
+                Score: {{ description.score }}/10
               </li>
               {% endif %}
 
