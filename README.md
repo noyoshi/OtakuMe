@@ -14,9 +14,15 @@ TODO:
 - [x] Add in search feature for database
 - [x] Add in feature that collects more info on anime
 - [x] Add front end UI
-- [ ] Make UI better 
-- [ ] Make searches better 
-- [ ] Add in manga  
+- [ ] Improve UI 
+- [ ] Make searches faster... I have a dumb way of doing it right now, need to
+  implemenet beautifulsoup strainers on the HTML to make lookup faster
+- [x] Add in manga  
+- [ ] Cache searches 
+- [ ] Use amazon's advertising API to link to places where you can purchase
+  manga
+- [ ] Add links if anime is avaliable on other streaming services, such as
+  Hulu, Netlix, Amazon 
 
 APIs
 ---
