@@ -23,6 +23,8 @@ TODO:
   manga
 - [ ] Add links if anime is avaliable on other streaming services, such as
   Hulu, Netlix, Amazon 
+- [ ] Create database ER diagram, redo the database to support better and more
+  dynamic lookup
 
 APIs
 ---
